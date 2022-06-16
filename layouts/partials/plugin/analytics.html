@@ -3,20 +3,31 @@
 {{- if $analytics.enable -}}
     {{- /* Google Analytics */ -}}
     {{- with $analytics.google.id -}}
-        <script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+    <script type="text/javascript">
+        window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', '{{ . }}'{{ if $analytics.google.anonymizeIP }}, { 'anonymize_ip': true }{{ end }});
-        </script>
-        {{- printf "https://www.googletagmanager.com/gtag/js?id=%v" . | dict "Async" true "Source" | partial "plugin/script.html" -}}
+    </script>
+    {{- printf "https://www.googletagmanager.com/gtag/js?id=%v" . | dict "Async" true "Source" | partial "plugin/script.html" -}}
     {{- end -}}
 
     {{- /* Fathom Analytics */ -}}
     {{- with $analytics.fathom.id -}}
-        <script type="text/javascript">
-            window.fathom=window.fathom||function(){(fathom.q=fathom.q||[]).push(arguments);};
+    <script type="text/javascript">
+        window.fathom=window.fathom||function(){(fathom.q=fathom.q||[]).push(arguments);};
             fathom('set', 'siteId', '{{ . }}');
             fathom('trackPageview');
-        </script>
-        {{- dict "Source" ($analytics.fathom.server | default "cdn.usefathom.com" | printf "https://%v/tracker.js") "Async" true "Attr" "id=fathom-script" | partial "plugin/script.html" -}}
+    </script>
+    {{- dict "Source" ($analytics.fathom.server | default "cdn.usefathom.com" | printf "https://%v/tracker.js") "Async" true "Attr" "id=fathom-script" | partial "plugin/script.html" -}}
     {{- end -}}
+
+    {{- /* growingio Analytics */ -}}
+    {{- with $analytics.growingio.id -}}
+    <script type='text/javascript'>
+        !function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
+            gio('init','{{ . }}', {}); 
+            gio('send'); 
+    </script>
+    {{- end -}}
+
+
 {{- end -}}
