@@ -1,6 +1,22 @@
 {{- $analytics := .Scratch.Get "analytics" | default dict -}}
 
 {{- if $analytics.enable -}}
+
+
+    {{- /* Baidu Analytics */ -}}
+    {{- with $analytics.baidu.id -}}
+        <script type="text/javascript"> 
+            var _hmt = _hmt || [];
+            (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?" + '{{ . }}';
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+    {{- end -}}
+
+
     {{- /* Google Analytics */ -}}
     {{- with $analytics.google.id -}}
     <script type="text/javascript">
