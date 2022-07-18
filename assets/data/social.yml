@@ -539,6 +539,36 @@ kaggle:
   Icon:
     Class: fab fa-kaggle fa-fw
 
+# 069: MediaWiki
+mediawiki:
+  Weight: 69
+  Title: MediaWiki
+  Icon:
+    Class: fab fa-wikipedia-w fa-fw
+
+# 070: Plume
+plume:
+  Weight: 70
+  Title: Plume
+  Icon:
+    Src: svg/icons/plume.svg
+
+# 071: Hack The Box
+hackthebox:
+  Weight: 71
+  Title: Hack The Box
+  Prefix: https://app.hackthebox.com/profile/
+  Icon:
+    Simpleicons: hackthebox
+
+# 072: Root-Me
+rootme:
+  Weight: 72
+  Title: Root-Me
+  Prefix: https://www.root-me.org/
+  Icon:
+    Src: svg/icons/rootme.svg
+
 # Phone
 phone:
   Weight: 98
